@@ -19,9 +19,9 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 
-[image1]: ./pipeline/undistorted_calibration.jpg "Undistorted"
-[image2]: ./piepline/undistorted_lane.jpg "Road Transformed"
-[image3]: ./pipeline/binary_image.jpg "Binary Example"
+[image1]: ./pipeline/undistorted_calibration_image.jpg "Undistorted"
+[image2]: ./pipeline/undistorted_lane_image.jpg "Road Transformed"
+[image3]: ./pipeline/binary_threshold_image.jpg "Binary Example"
 [image4]: ./pipeline/warped_straight_lines.jpg "Warp Example"
 [image5]: ./pipeline/color_fit_lines.jpg "Fit Visual"
 [image6]: ./pipeline/final_output.jpg "Output"
