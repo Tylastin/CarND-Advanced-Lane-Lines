@@ -105,7 +105,10 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 .
-Then i used sliding windows and histograms to detect lane line pixels. Once the pixels for each lane line were detected i used the cv2.polyfit function to fit a 2nd order polynomial to each lane line. The code for this process can be found in the fifth code block of the Jupyter notebook. Example polynomial fit:
+Then i used sliding windows and histograms to detect lane line pixels. Once the pixels for each lane line were detected i used the cv2.polyfit function to fit a 2nd order polynomial to each lane line. The code for this process can be found in the fifth code block of the Jupyter notebook. 
+
+Example polynomial fit:
+
 ![alt text][image5]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
