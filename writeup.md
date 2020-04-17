@@ -5,7 +5,9 @@
 
 **Advanced Lane Finding Project**
 
-The goals / steps of this project are the following:
+The goal of this project is to create a pipeline that detects lane lines in road images.
+
+The steps of this project are the following:
 
 * Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
 * Apply a distortion correction to raw images.
@@ -46,9 +48,9 @@ You're reading it!
 
 The code for this step is contained in the first code cell of the IPython notebook located in "./pipeline/lane_detection_pipeline.ipynb".  
 
-I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image. `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
-I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the calibration image using the `cv2.undistort()` function and obtained this result: 
+I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the calibration image using the `cv2.undistort()` function and obtained the undistorted image. 
 
 ![alt text][image1]
 
@@ -56,15 +58,16 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 #### 1. Provide an example of a distortion-corrected image.
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
+Using the camera matrix and distortion matrix obtained in the last step i applied cv2.undistort() function to correct the lane images.
+
 Example of a distortion-corrected lane image:
 ![alt text][image2]
 
-#### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
+#### 2. Describe how you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-The code for this step is contained in the first code cell of 
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps ain the third code cell of the IPython notebook located in "./pipeline/lane_detection_pipeline.ipynb").  Here's an example of my output for this step:
+I used a combination of color and gradient thresholds to generate a binary image. The thresholding steps are in the third code cell of the IPython notebook located in "./pipeline/lane_detection_pipeline.ipynb".  
+Here's an example of my output for this step:
 
 ![alt text][image3]
 
@@ -102,7 +105,7 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 .
-Then i used sliding windows and histograms to detect lane line pixels. Once the pixels for each lane line were detected i used the cv2.polyfit function to fit a 2nd order polynomial to each lnae line. The code for this process can be found in the fifth code block of the Jupyter notebook. This image illustrates the polynomial fit:
+Then i used sliding windows and histograms to detect lane line pixels. Once the pixels for each lane line were detected i used the cv2.polyfit function to fit a 2nd order polynomial to each lane line. The code for this process can be found in the fifth code block of the Jupyter notebook. Example polynomial fit:
 ![alt text][image5]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
@@ -121,7 +124,7 @@ Finally, I plotted the lane line polynomial fits back onto the original image. I
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./transformed_project_video.mp4)
+Here's a [link to my video result](./pipeline/transformed_project_video.mp4)
 
 ---
 
@@ -129,4 +132,4 @@ Here's a [link to my video result](./transformed_project_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The main issues i faced in my implementation of the project was . Although the current pipeline performs well on the smooth project video, it fails to perform well on the challenge video. To make the pipeline for robust a sobel magnitude threshold could be added. Also the paramters are not currently optimized. If the parameters are tuned more finely then shadows and foreign lines would be less likely to trick the pipeline. If these improvements are made the pipeline will perform better on the challenge videos.
+Although the current pipeline performs well on the smooth project video, it fails to perform well on the challenge video. To make the pipeline more robust, a sobel magnitude threshold could be added. Also the paramters are not currently optimized. If the parameters are tuned more finely then shadows and foreign lines would be less likely to trick the pipeline. If these improvements are made the pipeline should perform better on the challenge videos.
